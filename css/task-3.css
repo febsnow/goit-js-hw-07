@@ -1,0 +1,17 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  margin: -15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  width: 350px;
+
+  list-style: none;
+  margin: 15px;
+}
