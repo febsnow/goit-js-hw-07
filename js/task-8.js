@@ -8,30 +8,37 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-const amountToCreate = refs.inputField.value;
-
 const boxes = document.getElementById('boxes');
 
 refs.createDivBtn.addEventListener('click', onCreateDivBtnClick);
-refs.resetDivBtn.addEventListener('click', onResetDivBtnClick);
+refs.resetDivBtn.addEventListener('click', destroyBoxes);
 
 function onCreateDivBtnClick() {
-  const arrr = [];
-  arrr.length = refs.inputField.value;
+  const divArrayEl = [];
+  divArrayEl.length = refs.inputField.value;
 
-  for (let i = 1; i <= arrr.length; i += 1) {
-    const divEl = document.createElement('div');
+  let width = 30;
+  let height = 30;
+  const step = 10;
+
+  for (let i = 1; i <= divArrayEl.length; i += 1) {
+    let divEl = document.createElement('div');
     const red = getRandomInt(255);
     const green = getRandomInt(255);
     const blue = getRandomInt(255);
-    divEl.style.width = '30px';
-    divEl.style.height = '30px';
+
+    divEl.style.width += `${width}px`;
+    divEl.style.height += `${height}px`;
+    width += step;
+    height += step;
+
     divEl.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+
     boxes.appendChild(divEl);
   }
 }
 
-function onResetDivBtnClick() {
+function destroyBoxes() {
   refs.inputField.value = '';
   boxes.innerHTML = '';
 }
